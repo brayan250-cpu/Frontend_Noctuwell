@@ -1,1 +1,70 @@
-<p>appointment-list works!</p>
+<section class="list-page">
+  <header class="list-header">
+    <div>
+      <p class="eyebrow">Agenda clínica</p>
+      <h1>Citas programadas</h1>
+      <p>Revisa, filtra y administra todas las citas médicas desde un solo lugar.</p>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="nuevaCita()">+ Nueva cita</button>
+  </header>
+
+  <div class="toolbar">
+    <label class="search-field">
+      <span class="sr-only">Buscar cita</span>
+      <input type="search" placeholder="Buscar por paciente, especialista o estado" (input)="applyFilter($event)">
+    </label>
+    <div class="toolbar-meta">
+      <span class="pill">{{ dsAppointments.filteredData.length }} citas</span>
+      <button type="button" class="btn btn-ghost" (click)="cargarCitas()">Actualizar</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Paciente</th>
+            <th>Especialista</th>
+            <th>Horario</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="dsAppointments.filteredData.length; else emptyAppointments">
+          <tr *ngFor="let appointment of dsAppointments.filteredData">
+            <td class="appointment-id">#{{ appointment.id }}</td>
+            <td>{{ appointment.patientId }}</td>
+            <td>{{ appointment.specialistId }}</td>
+            <td><span class="schedule-chip">{{ appointment.scheduleId }}</span></td>
+            <td class="date-label">{{ appointment.date | date: 'dd/MM/yyyy · HH:mm' }}</td>
+            <td>
+              <span class="status-pill"
+                    [ngClass]="{
+                      'is-success': appointment.status?.toLowerCase() === 'completada' || appointment.status?.toLowerCase() === 'completed',
+                      'is-warning': appointment.status?.toLowerCase() === 'pendiente' || appointment.status?.toLowerCase() === 'scheduled',
+                      'is-danger': appointment.status?.toLowerCase() === 'cancelada' || appointment.status?.toLowerCase() === 'cancelled'
+                    }">
+                {{ appointment.status || 'Sin estado' }}
+              </span>
+            </td>
+            <td>
+              <div class="row-actions">
+                <button class="btn btn-ghost" type="button" (click)="editarCita(appointment.id)">Editar</button>
+                <button class="btn btn-danger" type="button" (click)="borrarCita(appointment.id)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #emptyAppointments>
+      <div class="empty-state">
+        <strong>Aún no hay citas registradas.</strong>
+        <span>Utiliza el botón "Nueva cita" para crear la primera.</span>
+      </div>
+    </ng-template>
+  </div>
+</section>

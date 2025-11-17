@@ -1,1 +1,66 @@
-<p>patient-list works!</p>
+<section class="list-page">
+  <header class="list-header">
+    <div>
+      <p class="eyebrow">Directorio</p>
+      <h1>Pacientes</h1>
+      <p>Consulta la información de contacto y el historial básico de tus pacientes.</p>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="nuevoPaciente()">+ Nuevo paciente</button>
+  </header>
+
+  <div class="toolbar">
+    <label class="search-field">
+      <span class="sr-only">Buscar paciente</span>
+      <input type="search" placeholder="Buscar por nombre, correo o teléfono" (input)="applyFilter($event)">
+    </label>
+    <div class="toolbar-meta">
+      <span class="pill">{{ dsPatients.filteredData.length }} pacientes</span>
+      <button class="btn btn-ghost" type="button" (click)="cargarPacientes()">Actualizar</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Contacto</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Fecha de nacimiento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="dsPatients.filteredData.length; else emptyPatients">
+          <tr *ngFor="let patient of dsPatients.filteredData">
+            <td>#{{ patient.id }}</td>
+            <td class="patient-name">{{ patient.firstName }} {{ patient.lastName }}</td>
+            <td>
+              <div class="patient-contact">
+                <span>{{ patient.email }}</span>
+                <span>{{ patient.phone }}</span>
+              </div>
+            </td>
+            <td>{{ patient.email }}</td>
+            <td>{{ patient.phone }}</td>
+            <td class="birthdate">{{ patient.birthdate | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <div class="row-actions">
+                <button class="btn btn-ghost" type="button" (click)="editarPaciente(patient.id)">Editar</button>
+                <button class="btn btn-danger" type="button" (click)="borrarPaciente(patient.id)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #emptyPatients>
+      <div class="empty-state">
+        <strong>No hay pacientes registrados.</strong>
+        <span>Agrega uno nuevo para comenzar a construir el directorio.</span>
+      </div>
+    </ng-template>
+  </div>
+</section>

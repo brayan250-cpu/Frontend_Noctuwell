@@ -1,0 +1,21 @@
+@import '../../shared/list-styles.css';
+
+.plan-name {
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
+.plan-description {
+  color: #475467;
+  max-width: 38ch;
+}
+
+.plan-price {
+  font-weight: 700;
+  color: #047857;
+}
+
+.plan-duration {
+  font-family: 'Space Mono', 'JetBrains Mono', monospace;
+  color: #4338ca;
+}

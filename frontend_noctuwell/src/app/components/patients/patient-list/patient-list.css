@@ -1,19 +1,24 @@
-.container {
-  max-width: 1100px;
+@import '../../shared/list-styles.css';
+
+.patient-name {
+  font-weight: 600;
+  color: #0f172a;
 }
 
-.full-width-table {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.acciones {
+.patient-contact {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.85rem;
+  color: #475467;
 }
 
-.filtro {
-  flex: 1;
+.patient-contact span:first-child {
+  font-weight: 600;
+  color: #4338ca;
+}
+
+.birthdate {
+  font-weight: 600;
+  color: #0d9488;
 }

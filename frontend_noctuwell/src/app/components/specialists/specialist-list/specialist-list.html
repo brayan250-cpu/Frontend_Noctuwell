@@ -1,1 +1,70 @@
-<p>specialist-list works!</p>
+<section class="list-page">
+  <header class="list-header">
+    <div>
+      <p class="eyebrow">Equipo médico</p>
+      <h1>Especialistas</h1>
+      <p>Gestiona el talento médico, su información de contacto y la especialidad asignada.</p>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="nuevoSpecialist()">+ Nuevo especialista</button>
+  </header>
+
+  <div class="toolbar">
+    <label class="search-field">
+      <span class="sr-only">Buscar especialista</span>
+      <input type="search" placeholder="Buscar por nombre, correo o tipo" (input)="applyFilter($event)">
+    </label>
+    <div class="toolbar-meta">
+      <span class="pill">{{ dsSpecialists.filteredData.length }} especialistas</span>
+      <button type="button" class="btn btn-ghost" (click)="cargarSpecialists()">Actualizar</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="dsSpecialists.filteredData.length; else emptySpecialists">
+          <tr *ngFor="let specialist of dsSpecialists.filteredData">
+            <td>#{{ specialist.id }}</td>
+            <td>
+              <div class="specialist-name">{{ specialist.firstName }} {{ specialist.lastName }}</div>
+              <div class="specialist-role">ID tipo: {{ specialist.typeSpecialistId }}</div>
+            </td>
+            <td>
+              <div class="specialist-contact">
+                <span>{{ specialist.email }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="specialist-contact">
+                <span>{{ specialist.phone }}</span>
+              </div>
+            </td>
+            <td>{{ specialist.typeSpecialistName || 'Sin asignar' }}</td>
+            <td>
+              <div class="row-actions">
+                <button class="btn btn-ghost" type="button" (click)="editarSpecialist(specialist.id)">Editar</button>
+                <button class="btn btn-danger" type="button" (click)="borrarSpecialist(specialist.id)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #emptySpecialists>
+      <div class="empty-state">
+        <strong>No hay especialistas registrados.</strong>
+        <span>Agrega miembros del equipo para tenerlos siempre disponibles.</span>
+      </div>
+    </ng-template>
+  </div>
+</section>

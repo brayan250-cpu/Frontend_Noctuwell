@@ -1,1 +1,59 @@
-<p>plan-list works!</p>
+<section class="list-page">
+  <header class="list-header">
+    <div>
+      <p class="eyebrow">Catálogo</p>
+      <h1>Planes y coberturas</h1>
+      <p>Define los planes disponibles, su descripción y condiciones económicas.</p>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="nuevoPlan()">+ Nuevo plan</button>
+  </header>
+
+  <div class="toolbar">
+    <label class="search-field">
+      <span class="sr-only">Buscar plan</span>
+      <input type="search" placeholder="Buscar por nombre o descripción" (input)="applyFilter($event)">
+    </label>
+    <div class="toolbar-meta">
+      <span class="pill">{{ dsPlans.filteredData.length }} planes</span>
+      <button type="button" class="btn btn-ghost" (click)="cargarPlanes()">Actualizar</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Duración (días)</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="dsPlans.filteredData.length; else emptyPlans">
+          <tr *ngFor="let plan of dsPlans.filteredData">
+            <td>#{{ plan.id }}</td>
+            <td class="plan-name">{{ plan.name }}</td>
+            <td class="plan-description">{{ plan.description }}</td>
+            <td class="plan-price">{{ plan.price | currency:'USD' }}</td>
+            <td class="plan-duration">{{ plan.duration }}</td>
+            <td>
+              <div class="row-actions">
+                <button class="btn btn-ghost" type="button" (click)="editarPlan(plan.id)">Editar</button>
+                <button class="btn btn-danger" type="button" (click)="borrarPlan(plan.id)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #emptyPlans>
+      <div class="empty-state">
+        <strong>Todavía no creaste planes.</strong>
+        <span>Agrega uno nuevo para empezar a ofrecer servicios.</span>
+      </div>
+    </ng-template>
+  </div>
+</section>

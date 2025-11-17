@@ -1,1 +1,55 @@
-<p>type-specialist-list works!</p>
+<section class="list-page">
+  <header class="list-header">
+    <div>
+      <p class="eyebrow">Clasificación</p>
+      <h1>Tipos de especialista</h1>
+      <p>Crea categorías claras para asignar a cada profesional el rol correcto.</p>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="nuevoTypeSpecialist()">+ Nuevo tipo</button>
+  </header>
+
+  <div class="toolbar">
+    <label class="search-field">
+      <span class="sr-only">Buscar tipo de especialista</span>
+      <input type="search" placeholder="Buscar por nombre o descripción" (input)="applyFilter($event)">
+    </label>
+    <div class="toolbar-meta">
+      <span class="pill">{{ dsTypeSpecialists.filteredData.length }} tipos</span>
+      <button type="button" class="btn btn-ghost" (click)="cargarTypeSpecialists()">Actualizar</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="dsTypeSpecialists.filteredData.length; else emptyTypes">
+          <tr *ngFor="let typeSpecialist of dsTypeSpecialists.filteredData">
+            <td>#{{ typeSpecialist.id }}</td>
+            <td class="type-specialist-name">{{ typeSpecialist.name }}</td>
+            <td class="type-specialist-description">{{ typeSpecialist.description }}</td>
+            <td>
+              <div class="row-actions">
+                <button class="btn btn-ghost" type="button" (click)="editarTypeSpecialist(typeSpecialist.id)">Editar</button>
+                <button class="btn btn-danger" type="button" (click)="borrarTypeSpecialist(typeSpecialist.id)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #emptyTypes>
+      <div class="empty-state">
+        <strong>No se han configurado tipos.</strong>
+        <span>Crea uno nuevo para clasificar a tu equipo médico.</span>
+      </div>
+    </ng-template>
+  </div>
+</section>

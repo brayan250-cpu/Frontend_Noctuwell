@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AppointmentService } from '../../../services/appointment-service';
 import { Appointment } from '../../../models/appointment';
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointment-list',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './appointment-list.html',
   styleUrls: ['./appointment-list.css']
 })

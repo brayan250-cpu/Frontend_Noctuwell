@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../services/patient-service';
 import { Patient } from '../../../models/patient';
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-list',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './patient-list.html',
   styleUrls: ['./patient-list.css']
 })

@@ -1,0 +1,24 @@
+@import '../../shared/list-styles.css';
+
+.specialist-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.specialist-role {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.specialist-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.85rem;
+  color: #475467;
+}
+
+.specialist-contact span:first-child {
+  color: #4338ca;
+  font-weight: 600;
+}

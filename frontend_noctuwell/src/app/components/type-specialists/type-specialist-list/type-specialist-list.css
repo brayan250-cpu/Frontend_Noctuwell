@@ -1,0 +1,10 @@
+@import '../../shared/list-styles.css';
+
+.type-specialist-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.type-specialist-description {
+  color: #475467;
+}

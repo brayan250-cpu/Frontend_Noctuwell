@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,6 +8,8 @@ import { Specialist } from '../../../models/specialist';
 
 @Component({
   selector: 'app-specialist-list',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './specialist-list.html',
   styleUrls: ['./specialist-list.css']
 })

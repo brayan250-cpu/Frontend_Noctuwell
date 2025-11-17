@@ -1,0 +1,21 @@
+@import '../../shared/list-styles.css';
+
+.appointment-id {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #4338ca;
+}
+
+.schedule-chip {
+  font-family: 'JetBrains Mono', 'Space Mono', monospace;
+  font-size: 0.82rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.45rem;
+  background: rgba(15, 23, 42, 0.05);
+  color: #0f172a;
+}
+
+.date-label {
+  font-weight: 600;
+  color: #0f172a;
+}
