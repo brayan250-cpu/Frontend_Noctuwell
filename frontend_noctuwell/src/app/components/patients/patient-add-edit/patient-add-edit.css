@@ -1,0 +1,13 @@
+.container {
+  max-width: 800px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.botones {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
