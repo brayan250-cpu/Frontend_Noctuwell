@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TypeSpecialistService } from '../../../services/type-specialist-service';
 import { TypeSpecialist } from '../../../models/type-specialist';
@@ -9,7 +9,7 @@ import { TypeSpecialist } from '../../../models/type-specialist';
 @Component({
   selector: 'app-type-specialist-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSnackBarModule],
   templateUrl: './type-specialist-list.html',
   styleUrls: ['./type-specialist-list.css']
 })

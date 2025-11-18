@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: rgba(79, 70, 229, 0.9);
+  padding: 0 clamp(1rem, 5vw, 4rem);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-transform: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.brand mat-icon {
+  font-size: 1.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 1.1rem;
+}
+
+.brand-tagline {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-links a.is-active {
+  font-weight: 700;
+}
+
+.app-main {
+  flex: 1;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  color: #475467;
+  font-size: 0.95rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.footer-links a {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .nav-links {
+    display: none;
+  }
+}

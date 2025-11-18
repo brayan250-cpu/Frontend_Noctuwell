@@ -3,6 +3,6 @@ export interface Appointment {
   patientId: number;
   specialistId: number;
   scheduleId: number;
-  date: string;   
-  status: string;
+  date: string;
+  status?: string | null;
 }

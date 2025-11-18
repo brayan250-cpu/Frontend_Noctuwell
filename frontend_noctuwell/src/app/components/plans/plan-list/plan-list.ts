@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PlanService } from '../../../services/plan-service';
 import { Plan } from '../../../models/plan';
@@ -9,7 +9,7 @@ import { Plan } from '../../../models/plan';
 @Component({
   selector: 'app-plan-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSnackBarModule],
   templateUrl: './plan-list.html',
   styleUrls: ['./plan-list.css']
 })

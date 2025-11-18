@@ -1,1 +1,59 @@
-<p>appointment-add-edit works!</p>
+<section class="form-shell">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{ titulo }}</mat-card-title>
+      <mat-card-subtitle>Programa y coordina las citas entre pacientes y especialistas.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="form-grid" [formGroup]="form" (ngSubmit)="grabar()">
+        <mat-form-field appearance="outline">
+          <mat-label>Paciente</mat-label>
+          <mat-select formControlName="patientId">
+            <mat-option *ngFor="let patient of patients" [value]="patient.id">
+              {{ patient.firstName }} {{ patient.lastName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('patientId')?.hasError('required')">Selecciona un paciente</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Especialista</mat-label>
+          <mat-select formControlName="specialistId">
+            <mat-option *ngFor="let specialist of specialists" [value]="specialist.id">
+              {{ specialist.firstName }} {{ specialist.lastName }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('specialistId')?.hasError('required')">Selecciona un especialista</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field-full">
+          <mat-label>Horario disponible</mat-label>
+          <mat-select formControlName="scheduleId" [disabled]="!schedules.length">
+            <mat-option *ngFor="let schedule of schedules" [value]="schedule.id">
+              {{ getScheduleLabel(schedule) }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('scheduleId')?.hasError('required')">Selecciona un horario</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha y hora</mat-label>
+          <input matInput type="datetime-local" formControlName="date">
+          <mat-error *ngIf="form.get('date')?.hasError('required')">La fecha es obligatoria</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statusOptions" [value]="status">{{ status }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="form-actions form-field-full">
+          <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+          <button mat-flat-button color="primary" type="submit">{{ idAppointment ? 'Actualizar' : 'Crear' }}</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

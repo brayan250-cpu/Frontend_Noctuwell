@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../services/patient-service';
 import { Patient } from '../../../models/patient';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSnackBarModule],
   templateUrl: './patient-list.html',
   styleUrls: ['./patient-list.css']
 })

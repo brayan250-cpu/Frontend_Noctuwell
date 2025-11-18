@@ -1,7 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppointmentService } from '../../../services/appointment-service';
 import { PatientService } from '../../../services/patient-service';
 import { SpecialistService } from '../../../services/specialist-service';
@@ -9,9 +10,25 @@ import { ScheduleService } from '../../../services/schedule-service';
 import { Appointment } from '../../../models/appointment';
 import { Patient } from '../../../models/patient';
 import { Specialist } from '../../../models/specialist';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-appointment-add-edit',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatSnackBarModule,
+  ],
   templateUrl: './appointment-add-edit.html',
   styleUrls: ['./appointment-add-edit.css']
 })
@@ -24,6 +41,7 @@ export class AppointmentAddEditComponent implements OnInit {
   patients: Patient[] = [];
   specialists: Specialist[] = [];
   schedules: any[] = [];
+  readonly statusOptions: string[] = ['PENDING', 'CONFIRMED', 'COMPLETED', 'CANCELLED'];
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +68,8 @@ export class AppointmentAddEditComponent implements OnInit {
     this.specialistService.getAll().subscribe(data => this.specialists = data);
 
     this.form.get('specialistId')?.valueChanges.subscribe(id => {
+      this.schedules = [];
+      this.form.get('scheduleId')?.reset();
       if (id) {
         this.scheduleService.getBySpecialistId(id).subscribe({
           next: (data) => this.schedules = data,
@@ -110,5 +130,18 @@ export class AppointmentAddEditComponent implements OnInit {
 
   cancelar(): void {
     this.router.navigate(['/appointment-list']);
+  }
+
+  getScheduleLabel(schedule: any): string {
+    if (!schedule) {
+      return '';
+    }
+    const parts = [
+      schedule.dayOfWeek || schedule.day,
+      schedule.startTime && schedule.endTime
+        ? `${schedule.startTime} - ${schedule.endTime}`
+        : schedule.startTime || schedule.hour
+    ].filter(Boolean);
+    return parts.length ? parts.join(' · ') : `Horario #${schedule.id}`;
   }
 }
