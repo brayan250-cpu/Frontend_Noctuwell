@@ -1,0 +1,80 @@
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Plataforma integral</p>
+    <h1>Coordinación clínica sin fricción</h1>
+    <p class="lead">
+      Gestiona pacientes, especialistas y citas desde un solo panel construido con Angular Material.
+      Cada tarjeta te dirige a un CRUD completo listo para operar.
+    </p>
+    <div class="hero-actions">
+      <a mat-flat-button color="primary" routerLink="/patient-list">
+        <mat-icon svgIcon="patients" aria-hidden="true"></mat-icon>
+        Gestionar pacientes
+      </a>
+      <a mat-stroked-button color="primary" routerLink="/appointment-list">
+        <mat-icon svgIcon="calendar" aria-hidden="true"></mat-icon>
+        Ver agenda
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card" *ngFor="let stat of stats">
+        <strong>{{ stat.value }}</strong>
+        <span>{{ stat.label }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <mat-card class="hero-card">
+      <mat-card-header>
+        <mat-card-title>Resumen operativo</mat-card-title>
+        <mat-card-subtitle>Módulos clave</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let action of quickActions | slice:0:3">
+            <mat-icon [svgIcon]="action.icon" aria-hidden="true"></mat-icon>
+            <div>
+              <strong>{{ action.title }}</strong>
+              <small>{{ action.description }}</small>
+            </div>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<section class="actions">
+  <header>
+    <p class="eyebrow">Accesos directos</p>
+    <h2>CRUD disponibles</h2>
+    <p>Ingresa a cada entidad para listar, crear, editar o eliminar registros sin salir de la landing.</p>
+  </header>
+  <div class="action-grid">
+    <mat-card class="action-card" *ngFor="let action of quickActions" [routerLink]="action.route">
+      <mat-card-content>
+        <div class="action-icon" [ngClass]="'accent-' + action.accent">
+          <mat-icon [svgIcon]="action.icon" aria-hidden="true"></mat-icon>
+        </div>
+        <h3>{{ action.title }}</h3>
+        <p>{{ action.description }}</p>
+        <div class="action-link">
+          Ir al módulo
+          <mat-icon svgIcon="arrow" aria-hidden="true"></mat-icon>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<section class="feature-section">
+  <div class="feature-grid">
+    <mat-card class="feature-card" *ngFor="let feature of features">
+      <mat-card-content>
+        <mat-icon [svgIcon]="feature.icon" aria-hidden="true"></mat-icon>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>

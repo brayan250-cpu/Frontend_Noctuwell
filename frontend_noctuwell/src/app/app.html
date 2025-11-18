@@ -1,33 +1,32 @@
-<!-- app.html -->
- <div class="landing-noctuwell">
+<div class="app-shell">
+  <mat-toolbar color="primary" class="app-toolbar" role="navigation">
+    <a mat-button class="brand" routerLink="/" aria-label="Volver al inicio">
+      <mat-icon svgIcon="brand-night" aria-hidden="true"></mat-icon>
+      <span class="brand-text">
+        <span class="brand-name">NoctuWell</span>
+        <span class="brand-tagline">Care Platform</span>
+      </span>
+    </a>
+    <span class="spacer"></span>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a mat-button routerLink="/patient-list" routerLinkActive="is-active">Pacientes</a>
+      <a mat-button routerLink="/specialist-list" routerLinkActive="is-active">Especialistas</a>
+      <a mat-button routerLink="/plan-list" routerLinkActive="is-active">Planes</a>
+      <a mat-button routerLink="/type-specialist-list" routerLinkActive="is-active">Tipos</a>
+      <a mat-raised-button color="accent" routerLink="/appointment-list" routerLinkActive="is-active">Agenda</a>
+    </nav>
+  </mat-toolbar>
 
-</div><mat-card class="card-opcion" routerLink="/patient-list">
-  <mat-card-title>Pacientes</mat-card-title>
-  <mat-card-content>
-    Gestión de pacientes del sistema NoctuWell.
-  </mat-card-content>
-</mat-card>
-<mat-card class="card-opcion" routerLink="/plan-list">
-  <mat-card-title>Planes</mat-card-title>
-  <mat-card-content>
-    Gestión de planes y sus características.
-  </mat-card-content>
-</mat-card>
-<mat-card class="card-opcion" routerLink="/specialist-list">
-  <mat-card-title>Especialistas</mat-card-title>
-  <mat-card-content>
-    Gestión de especialistas y sus tipos.
-  </mat-card-content>
-</mat-card>
-<mat-card class="card-opcion" routerLink="/type-specialist-list">
-  <mat-card-title>Tipos de Especialista</mat-card-title>
-  <mat-card-content>
-    Administrar los tipos de especialista disponibles en NoctuWell.
-  </mat-card-content>
-</mat-card>
-<mat-card class="card-opcion" routerLink="/appointment-list">
-  <mat-card-title>Citas</mat-card-title>
-  <mat-card-content>
-    Gestión de citas entre pacientes y especialistas.
-  </mat-card-content>
-</mat-card>
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="app-footer">
+    <p>© {{ currentYear }} NoctuWell. Plataforma integral de salud digital creada con Angular Material.</p>
+    <p class="footer-links">
+      <a routerLink="/plan-list">Ver planes</a>
+      <span aria-hidden="true">·</span>
+      <a routerLink="/patient-list">Directorio de pacientes</a>
+    </p>
+  </footer>
+</div>

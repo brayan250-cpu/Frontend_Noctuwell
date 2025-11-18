@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SpecialistService } from '../../../services/specialist-service';
 import { Specialist } from '../../../models/specialist';
@@ -9,7 +9,7 @@ import { Specialist } from '../../../models/specialist';
 @Component({
   selector: 'app-specialist-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSnackBarModule],
   templateUrl: './specialist-list.html',
   styleUrls: ['./specialist-list.css']
 })

@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { AppointmentService } from '../../../services/appointment-service';
 import { Appointment } from '../../../models/appointment';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointment-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSnackBarModule],
   templateUrl: './appointment-list.html',
   styleUrls: ['./appointment-list.css']
 })
